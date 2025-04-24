@@ -2,19 +2,21 @@ const express = require('express');
 
 const app = express();
 
+const { adminAuth, userAuth } = require('./middlewares/auth'); 
+
+app.use('/admin', adminAuth); 
 
 
-
-app.use("/user", (req, res,next) => {
-    res.send("User route is working!");
-    console.log("User route is working!");
-    next();
+app.get("/normalPage",userAuth, (req, res) => {
+console.log("Normal Page Middleware");
     
-});
-app.use("/product", (req, res,next) => {
-   res.send("Product route is working!");
-    console.log("Product route is working!");
-});
+res.send("Normal Page");
+})
+
+app.get("/admin/user", (req, res) => {
+    res.send("Admin Page");
+})
+
 app.listen(3000, () => {
     console.log('Server is running on port 3000');
     
