@@ -61,4 +61,20 @@ authRouter.post('/login', async (req, res) => {
         
 })
 
+authRouter.post('/logout', userAuth, async (req, res) => {
+    console.log('Received request:', req.body); // Log the received request body
+
+    try {
+        const user = req.user; // Get the authenticated user from the request
+        console.log('User logged out:', user); // Log the user being logged out
+
+        res.clearCookie("token"); // Clear the cookie
+        res.status(200).json({ message: 'User logged out' }); // Send a success response
+
+    } catch (error) {
+        console.error('Error logging out user:', error);
+        res.status(500).json({ message: 'Error logging out user' });
+    }
+})
+
 module.exports = authRouter;

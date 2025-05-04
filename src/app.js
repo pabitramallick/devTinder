@@ -13,11 +13,13 @@ const {userAuth} = require('./middlewares/auth.js'); // Import the user authenti
 const authRouter = require('./routes/auth.js'); // Import the authentication routes
 const requestRouter = require('./routes/request.js'); // Import the request routes
 const profileRouter = require('./routes/profile.js'); // Import the profile
+const userRouter = require('./routes/user.js'); // Import the user routes
 
 
 app.use("/", authRouter); // Use the authentication routes under the '/auth' path
 app.use("/", requestRouter); // Use the request routes under the '/request' path
 app.use("/", profileRouter); // Use the profile routes under the '/profile' path
+app.use("/", userRouter); 
 
 
 app.get('/getUsers', async (req, res) => {

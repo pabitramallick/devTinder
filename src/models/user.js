@@ -46,7 +46,7 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.getJWT = async function() {
     const user = this; // Get the user instance
     // const token1 = await jwt.sign({ _id: user},"pabitrasecretkey",{expiresIn:"1m"}); // Generate a JWT token using the user's ID
-    const token =await jwt.sign({ userId: user._id },"pabitrasecretkey",{expiresIn:"1m"} );
+    const token =await jwt.sign({ userId: user._id },"pabitrasecretkey",{expiresIn:"1d"} );
     return token; // Return the generated token
 
 }
